@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Destinations Slider</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add audio element -->
+    <audio id="bgAudio" autoplay loop>
+        <source src="bgmusic.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
     <style>
         * {
             margin: 0;
@@ -99,7 +104,29 @@
     transform: scale(1.05); /* Slightly enlarge */
 }
 
+/* Add new Home button styles */
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    font-size: 18px;
+    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
 
+.home-button:hover {
+    transform: scale(1.05);
+}
 
         .button {
             width: 100%;
@@ -364,15 +391,48 @@ transform: scale(0.7);
     to { opacity: 1; transform: translateY(-10); }
 }
 
+/* Add styles for the choice buttons */
+.choice-buttons {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    gap: 20px;
+    z-index: 1005;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
 
+.choice-buttons.active {
+    opacity: 1;
+}
 
+.choice-button {
+    font-size: 24px;
+    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
 
-
-
+.choice-button:hover {
+    transform: scale(1.05);
+}
 
     </style>
 </head>
 <body>
+    <!-- Add Home button -->
+    <a href="https://homepage-two-rust.vercel.app/" class="home-button">Home</a>
+    
     <div class="container">
         <div class="slide">
             <div class="item" style="background-image: url('fire.jpg');">
@@ -426,6 +486,11 @@ transform: scale(0.7);
     <img src="cloud3.png" class="popup5">
     </div>
     
+    <!-- Add choice buttons -->
+    <div class="choice-buttons">
+        <a href="https://tanishhhq-codes.github.io/Quiz/" class="choice-button">Play Quiz</a>
+        <a href="https://homepage-two-rust.vercel.app/" class="choice-button">Home</a>
+    </div>
 </body>
 
     <script>
@@ -560,25 +625,37 @@ document.addEventListener('click', function (event) {
     let popup2 = document.querySelector('.popup2');
     let popup3 = document.querySelector('.popup3');
     let dialogueText = document.querySelector('.dialogue-text');
+    let choiceButtons = document.querySelector('.choice-buttons');
 
     if (popup2Reappeared && popup2.classList.contains('active') && popup3.classList.contains('active') && !event.target.closest('.content button')) {
-        if (extraMessageIndex === 1 && !popup4Triggered) { 
-    triggerPopup4(); // ✅ Show popup4 first
-    popup4Triggered = true;
-}
+        if (extraMessageIndex < extraMessages.length) {  // Only proceed if we have messages left
+            if (extraMessageIndex === 1 && !popup4Triggered) { 
+                triggerPopup4();
+                popup4Triggered = true;
+            }
 
-if (extraMessageIndex === 1 && !popup5Triggered) { 
-    triggerPopup5(); // ✅ Show popup5 after popup4
-    popup5Triggered = true;
-}
+            if (extraMessageIndex === 1 && !popup5Triggered) { 
+                triggerPopup5();
+                popup5Triggered = true;
+            }
 
-        {
-    
             dialogueText.innerHTML = extraMessages[extraMessageIndex]; 
             extraMessageIndex++;
+
+            // Show choice buttons after last message with delay
+            if (extraMessageIndex === extraMessages.length) {
+                setTimeout(() => {
+                    choiceButtons.style.display = 'flex';
+                    setTimeout(() => {
+                        choiceButtons.classList.add('active');
+                    }, 100);
+                }, 3000); // 3 second delay
+            }
         }
     }
-    function triggerPopup5() {
+});
+
+function triggerPopup5() {
     let popup5 = document.querySelector('.popup5');
 
     setTimeout(() => {
@@ -596,7 +673,15 @@ function triggerPopup4() {
         popup4.classList.add('active');
     }, 500);
 }
-});
+
+        // Add this at the start of your script section
+        window.onload = function() {
+            const audio = document.getElementById('bgAudio');
+            audio.volume = 0.3; // Set volume to 30%
+            audio.play().catch(function(error) {
+                console.log("Audio autoplay failed:", error);
+            });
+        }
     </script>
 
 

@@ -1,0 +1,70 @@
+/* Quiz popup styles */
+.quiz-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.quiz-button {
+    padding: 25px 50px;
+    font-size: 28px;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3),
+                0 0 0 3px rgba(99, 102, 241, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.quiz-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.quiz-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4),
+                0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+.quiz-button:hover:before {
+    left: 100%;
+}
+
+.blur-background {
+    filter: blur(8px);
+    transition: filter 0.8s ease;
+}
+
+/* Add an overlay to darken the background when blurred */
+.overlay.blur-background {
+    background: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(8px);
+    z-index: 99999;
+} 
