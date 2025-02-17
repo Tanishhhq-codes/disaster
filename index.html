@@ -99,13 +99,35 @@
     transform: scale(1.05); /* Slightly enlarge */
 }
 
+/* Add new Home button styles */
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    font-size: 18px;
+    font-weight: 900;
+    font-family: 'Poppins', sans-serif;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
 
+.home-button:hover {
+    transform: scale(1.05);
+}
 
         .button {
             width: 100%;
             text-align: center;
             position: absolute;
-            bottom: 120px;
+            bottom: 70px;
             z-index: 10;
         }
         .button button {
@@ -373,6 +395,9 @@ transform: scale(0.7);
     </style>
 </head>
 <body>
+    <!-- Add Home button -->
+    <a href="https://homepage-two-rust.vercel.app/" class="home-button">Home</a>
+    
     <div class="container">
         <div class="slide">
             <div class="item" style="background-image: url('fire.jpg');">
@@ -509,7 +534,7 @@ document.querySelectorAll('.content button').forEach(button => {
     });
 });
 
-// 🔹 **Cycle messages & Show popup3 when clicking after last message**
+// 🔹 *Cycle messages & Show popup3 when clicking after last message*
 document.addEventListener('click', function (event) {
     let popup = document.querySelector('.popup');
     let popup2 = document.querySelector('.popup2');
@@ -544,10 +569,10 @@ document.addEventListener('click', function (event) {
                     popup2.classList.add('active');
                     popup2Reappeared = true;
 
-                    // ✅ **Clear the last message ("....")**
+                    // ✅ *Clear the last message ("....")*
                     dialogueText.innerHTML = "";
 
-                    // ✅ **Prepare extra messages**
+                    // ✅ *Prepare extra messages*
                     extraMessageIndex = 0;
                 }
             }, 1000);
@@ -555,7 +580,7 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// 🔹 **Cycle `extraMessages[]` after popup2 reappears**
+// 🔹 **Cycle extraMessages[] after popup2 reappears**
 document.addEventListener('click', function (event) {
     let popup2 = document.querySelector('.popup2');
     let popup3 = document.querySelector('.popup3');
