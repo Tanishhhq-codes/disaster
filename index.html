@@ -574,7 +574,7 @@ document.querySelectorAll('.content button').forEach(button => {
     });
 });
 
-// 🔹 **Cycle messages & Show popup3 when clicking after last message**
+// 🔹 *Cycle messages & Show popup3 when clicking after last message*
 document.addEventListener('click', function (event) {
     let popup = document.querySelector('.popup');
     let popup2 = document.querySelector('.popup2');
@@ -609,10 +609,10 @@ document.addEventListener('click', function (event) {
                     popup2.classList.add('active');
                     popup2Reappeared = true;
 
-                    // ✅ **Clear the last message ("....")**
+                    // ✅ *Clear the last message ("....")*
                     dialogueText.innerHTML = "";
 
-                    // ✅ **Prepare extra messages**
+                    // ✅ *Prepare extra messages*
                     extraMessageIndex = 0;
                 }
             }, 1000);
@@ -620,7 +620,7 @@ document.addEventListener('click', function (event) {
     }
 });
 
-// 🔹 **Cycle `extraMessages[]` after popup2 reappears**
+// 🔹 **Cycle extraMessages[] after popup2 reappears**
 document.addEventListener('click', function (event) {
     let popup2 = document.querySelector('.popup2');
     let popup3 = document.querySelector('.popup3');
