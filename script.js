@@ -1,3 +1,16 @@
+window.addEventListener('DOMContentLoaded', function() {
+    // Ensure earthquake slide is first
+    const slideContainer = document.querySelector('.slide');
+    const earthquakeSlide = document.querySelector('.earthquake');
+    const firstSlide = slideContainer.firstElementChild;
+    
+    if (firstSlide !== earthquakeSlide) {
+        slideContainer.insertBefore(earthquakeSlide, firstSlide);
+    }
+    
+    checkEarthquakeSlide();
+});
+
 let next = document.querySelector('.next');
 let prev = document.querySelector('.prev');
 

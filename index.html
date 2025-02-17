@@ -107,7 +107,7 @@
 /* Add new Home button styles */
 .home-button {
     position: fixed;
-    top: 20px;
+    top: 50px;
     left: 20px;
     z-index: 1000;
     font-size: 18px;
@@ -132,7 +132,7 @@
             width: 100%;
             text-align: center;
             position: absolute;
-            bottom: 70px;
+            bottom: 150px;
             z-index: 10;
         }
         .button button {
@@ -427,28 +427,52 @@ transform: scale(0.7);
     transform: scale(1.05);
 }
 
+/* Add these styles in the <style> section */
+.news-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 0;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.news-content {
+    white-space: nowrap;
+    animation: moveText 15s linear infinite;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 100%;
+}
+
+@keyframes moveText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
     </style>
 </head>
 <body>
     <!-- Add Home button -->
     <a href="https://homepage-two-rust.vercel.app/" class="home-button">Home</a>
     
+    <!-- Add this right after the Home button and before the container -->
+    <div class="news-banner">
+        <div class="news-content">
+            ***This site is in progress, Only the Earthquake Quiz is working, We'll add other quizes soon!***
+        </div>
+    </div>
+    
     <div class="container">
         <div class="slide">
-            <div class="item" style="background-image: url('fire.jpg');">
-                <div class="content">
-                    <div class="name">Forest Fire</div>
-                    <div class="des">A Forest fire is an uncontrolled wildfire causing destruction to nature and life.</div>
-                    <button>Start</button>
-                </div>
-            </div>
-            <div class="item" style="background-image: url('drought.jpg');">
-                <div class="content">
-                    <div class="name">Drought</div>
-                    <div class="des">A Drought is a prolonged water shortage causing environmental and economic damage.</div>
-                    <button>Start</button>
-                </div>
-            </div>
+            <!-- Tsunami Slide First -->
             <div class="item" style="background-image: url('tsunami.jpg');">
                 <div class="content">
                     <div class="name">Tsunami</div>
@@ -460,11 +484,24 @@ transform: scale(0.7);
             <div class="item earthquake">
                 <div class="earthquake-container">
                     <img src="earthquake.jpg">
-                   
                 </div>
                 <div class="content">
                     <div class="name">Earthquake</div>
                     <div class="des">An earthquake is a sudden shaking of the ground caused by tectonic movements.</div>
+                    <button>Start</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('fire.jpg');">
+                <div class="content">
+                    <div class="name">Forest Fire</div>
+                    <div class="des">A Forest fire is an uncontrolled wildfire causing destruction to nature and life.</div>
+                    <button>Start</button>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('drought.jpg');">
+                <div class="content">
+                    <div class="name">Drought</div>
+                    <div class="des">A Drought is a prolonged water shortage causing environmental and economic damage.</div>
                     <button>Start</button>
                 </div>
             </div>
@@ -551,8 +588,8 @@ let popup5Triggered = false;
 document.querySelectorAll('.content button').forEach(button => {
     button.addEventListener('click', function () {
         let parentSlide = this.closest('.item');
-
         if (parentSlide.classList.contains('earthquake')) {
+            document.querySelector('.news-banner').style.display = 'none';
             let popup = document.querySelector('.popup');
             let popup2 = document.querySelector('.popup2');
             let dialogueText = document.querySelector('.dialogue-text');
